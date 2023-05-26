@@ -7,7 +7,7 @@
 ### OPTIONS AND VARIABLES ###
 
 dotfilesrepo="https://github.com/kuchteq/wayrice.git"
-progsfile="https://raw.githubusercontent.com/Kuchteq/MARBS/main/progs.csv"
+progsfile="https://raw.githubusercontent.com/Kuchteq/MARBS/main/static/progs.csv"
 aurhelper="paru"
 repobranch="master"
 export TERM=ansi
