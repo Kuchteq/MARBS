@@ -113,14 +113,16 @@ manualinstall() {
 	# Should be run after repodir is created and var is set.
 	if [ -z "$2" ]; then 
 		reponame=$1
+		reposource="https://aur.archlinux.org/$reponame.gir"
 	else
 		reponame=$(echo $1 | grep -oE '[^/]+$' | cut -d'.' -f1)
+		reposource=$1
 	fi
 	pacman -Qq "$reponame" && return 0
 	whiptail --infobox "Installing \"$1\" manually." 7 50
 	sudo -u "$name" mkdir -p "$repodir/$reponame"
 	sudo -u "$name" git -C "$repodir" clone --depth 1 --single-branch \
-		--no-tags -q "$1" "$repodir/$reponame" ||
+		--no-tags -q "$reposource" "$repodir/$reponame" ||
 		{
 			cd "$repodir/$reponame" || return 1
 			sudo -u "$name" git pull --force origin master
