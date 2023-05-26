@@ -113,7 +113,7 @@ manualinstall() {
 	# Should be run after repodir is created and var is set.
 	if [ -z "$2" ]; then 
 		reponame=$1
-		reposource="https://aur.archlinux.org/$reponame.gir"
+		reposource="https://aur.archlinux.org/$reponame.git"
 	else
 		reponame=$(echo $1 | grep -oE '[^/]+$' | cut -d'.' -f1)
 		reposource=$1
