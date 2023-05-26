@@ -108,19 +108,25 @@ Include = /etc/pacman.d/mirrorlist-arch" >>/etc/pacman.conf
 }
 
 manualinstall() {
-	# Installs $1 manually. Used only for AUR helper here.
+	# Installs $1 manually. Used only for AUR helper here
+	# and custom user programs
 	# Should be run after repodir is created and var is set.
-	pacman -Qq "$1" && return 0
+	if [ -z "$2" ]; then 
+		reponame=$1
+	else
+		reponame=$(echo $1 | grep -oE '[^/]+$' | cut -d'.' -f1)
+	fi
+	pacman -Qq "$reponame" && return 0
 	whiptail --infobox "Installing \"$1\" manually." 7 50
-	sudo -u "$name" mkdir -p "$repodir/$1"
+	sudo -u "$name" mkdir -p "$repodir/$reponame"
 	sudo -u "$name" git -C "$repodir" clone --depth 1 --single-branch \
-		--no-tags -q "https://aur.archlinux.org/$1.git" "$repodir/$1" ||
+		--no-tags -q "$1" "$repodir/$reponame" ||
 		{
-			cd "$repodir/$1" || return 1
+			cd "$repodir/$reponame" || return 1
 			sudo -u "$name" git pull --force origin master
 		}
-	cd "$repodir/$1" || exit 1
-	sudo -u "$name" -D "$repodir/$1" \
+	cd "$repodir/$reponame" || exit 1
+	sudo -u "$name" -D "$repodir/$reponame" \
 		makepkg --noconfirm -si >/dev/null 2>&1 || return 1
 }
 
@@ -175,6 +181,7 @@ installationloop() {
 		"A") aurinstall "$program" "$comment" ;;
 		"G") gitmakeinstall "$program" "$comment" ;;
 		"P") pipinstall "$program" "$comment" ;;
+		"S") manualinstall "$program" "$comment" ;;
 		*) maininstall "$program" "$comment" ;;
 		esac
 	done </tmp/progs.csv
