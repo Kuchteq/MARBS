@@ -18,7 +18,7 @@ A,lf-sixel-git, "is an extensive terminal file manager that everyone likes. Now 
 ,wireplumber, "is an audio system and also provides capabilities needed for screen recording."
 ,pipewire-pulse, "gives pipewire compatibility with PulseAudio programs."
 ,wf-recorder, "is a utility for screen recording on wlroots."
-,keyd, "is a keyboard remapping daemon.",
+,keyd, "is a keyboard remapping daemon."
 ,mpv, "is a video player."
 ,man-db, "lets you read man pages of programs."
 ,neovim, "a tidier vim with greater customizability."
