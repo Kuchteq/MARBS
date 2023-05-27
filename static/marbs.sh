@@ -232,10 +232,10 @@ installffaddons(){
 installdefaultwallpapers() {
 	wallpaperspath="/home/$name/Pictures/Wallpapers"
 	mkdir -p "$wallpaperspath"
-	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/wallpaper_dark.jpg">"$wallpaperspath"
-	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/wallpaper_light.jpg">"$wallpaperspath"
-	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/lock_wallpaper_light.jpg">"$wallpaperspath"
-	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/lock_wallpaper_dark.jpg">"$wallpaperspath"
+	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/wallpaper_dark.jpg" > "$wallpaperspath/wallpaper_dark.jpg"
+	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/wallpaper_light.jpg" > "$wallpaperspath/wallpaper_light.jpg"
+	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/lock_wallpaper_light.jpg" > "$wallpaperspath/lock_wallpaper_light.jpg"
+	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/lock_wallpaper_dark.jpg" > "$wallpaperspath/lock_wallpaper_dark.jpg"
 }
 
 finalize() {
