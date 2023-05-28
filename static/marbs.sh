@@ -10,7 +10,9 @@ dotfilesrepo="https://github.com/kuchteq/wayrice.git"
 progsfile="https://raw.githubusercontent.com/Kuchteq/MARBS/master/static/progs.csv"
 aurhelper="paru"
 repobranch="master"
+hidpi=true
 export TERM=ansi
+
 
 ### FUNCTIONS ###
 
@@ -108,8 +110,8 @@ Include = /etc/pacman.d/mirrorlist-arch" >>/etc/pacman.conf
 }
 
 manualinstall() {
-	# Installs $1 manually. Used only for AUR helper here
-	# and custom user programs
+	# Installs $1 manually. Used for AUR helper as well as
+	# custom user programs
 	# Should be run after repodir is created and var is set.
 	if [ -z "$2" ]; then 
 		reponame=$1
@@ -129,7 +131,8 @@ manualinstall() {
 		}
 	cd "$repodir/$reponame" || exit 1
 	sudo -u "$name" -D "$repodir/$reponame" \
-		makepkg --noconfirm -si >/dev/null 2>&1 || return 1
+	#setrepodpi "$reponame"
+	makepkg --noconfirm -si >/dev/null 2>&1 || return 1
 }
 
 maininstall() {
@@ -200,16 +203,6 @@ putgitrepo() {
 		--single-branch --no-tags -q --recursive -b "$branch" \
 		--recurse-submodules "$1" "$dir"
 	sudo -u "$name" cp -rfT "$dir" "$2"
-}
-
-vimplugininstall() {
-	# TODO remove shortcuts error message
-	# Installs vim plugins.
-	whiptail --infobox "Installing neovim plugins..." 7 60
-	mkdir -p "/home/$name/.config/nvim/autoload"
-	curl -Ls "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" >  "/home/$name/.config/nvim/autoload/plug.vim"
-	chown -R "$name:wheel" "/home/$name/.config/nvim"
-	sudo -u "$name" nvim -c "PlugInstall|q|q"
 }
 
 installffaddons(){
@@ -285,8 +278,8 @@ adduserandpass || error "Error adding username and/or password."
 
 # Allow user to run sudo without password. Since AUR programs must be installed
 # in a fakeroot environment, this is required for all builds with AUR.
-trap 'rm -f /etc/sudoers.d/larbs-temp' HUP INT QUIT TERM PWR EXIT
-echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/larbs-temp
+trap 'rm -f /etc/sudoers.d/marbs-temp' HUP INT QUIT TERM PWR EXIT
+echo "%wheel ALL=(ALL) NOPASSWD: ALL" >/etc/sudoers.d/marbs-temp
 
 # Make pacman colorful, concurrent downloads and Pacman eye-candy.
 grep -q "ILoveCandy" /etc/pacman.conf || sed -i "/#VerbosePkgLists/a ILoveCandy" /etc/pacman.conf
@@ -303,10 +296,10 @@ manualinstall $aurhelper || error "Failed to install AUR helper."
 # and all build dependencies are installed.
 installationloop
 
-# Install the dotfiles in the user's home directory, but remove .git dir and
-# other unnecessary files.
+# Install the dotfiles in the user's home directory, don't remove the .git folder
+# cause it might be useful for updates but uninstall other unnecessary files.
 putgitrepo "$dotfilesrepo" "/home/$name" "$repobranch"
-rm -rf "/home/$name/.git/" "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
+rm -rf "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
 
 
 # Most important command! Get rid of the beep!
@@ -347,9 +340,9 @@ pkill -u "$name" librewolf
 
 # Allow wheel users to sudo with password and allow several system commands
 # (like `shutdown` to run without password).
-echo "%wheel ALL=(ALL:ALL) ALL" >/etc/sudoers.d/00-larbs-wheel-can-sudo
-echo "%wheel ALL=(ALL:ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/pacman -Syyuw --noconfirm,/usr/bin/pacman -S -u -y --config /etc/pacman.conf --,/usr/bin/pacman -S -y -u --config /etc/pacman.conf --" >/etc/sudoers.d/01-larbs-cmds-without-password
-echo "Defaults editor=/usr/bin/nvim" >/etc/sudoers.d/02-larbs-visudo-editor
+echo "%wheel ALL=(ALL:ALL) ALL" >/etc/sudoers.d/00-marbs-wheel-can-sudo
+echo "%wheel ALL=(ALL:ALL) NOPASSWD: /usr/bin/shutdown,/usr/bin/reboot,/usr/bin/systemctl suspend,/usr/bin/wifi-menu,/usr/bin/mount,/usr/bin/umount,/usr/bin/pacman -Syu,/usr/bin/pacman -Syyu,/usr/bin/pacman -Syyu --noconfirm,/usr/bin/loadkeys,/usr/bin/pacman -Syyuw --noconfirm,/usr/bin/pacman -S -u -y --config /etc/pacman.conf --,/usr/bin/pacman -S -y -u --config /etc/pacman.conf --" >/etc/sudoers.d/01-marbs-cmds-without-password
+echo "Defaults editor=/usr/bin/nvim" >/etc/sudoers.d/02-marbs-visudo-editor
 mkdir -p /etc/sysctl.d
 echo "kernel.dmesg_restrict = 0" > /etc/sysctl.d/dmesg.conf
 
