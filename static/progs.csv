@@ -5,6 +5,7 @@
 ,ttf-font-awesome, "provides extended glyph support."
 ,ttf-hack, "is a great font."
 ,ttf-hack-nerd, "provides hack the icons."
+,noto-fonts, "is an expansive font package needed for some icons."
 A,lf-sixel-git, "is an extensive terminal file manager that everyone likes. Now with sixel support!"
 ,chafa, "is a program that allows displaying images inside terminals."
 ,kanshi, "provides hotplug functionality for newly connected monitors using user defined profiles."
