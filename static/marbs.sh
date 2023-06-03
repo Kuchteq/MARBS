@@ -113,7 +113,7 @@ manualinstall() {
 	# Installs $1 manually. Used for AUR helper as well as
 	# custom user programs
 	# Should be run after repodir is created and var is set.
-	if [ -z "$2" ]; then 
+	if [ -z "$2" ]; then
 		reponame=$1
 		reposource="https://aur.archlinux.org/$reponame.git"
 	else
@@ -206,7 +206,7 @@ putgitrepo() {
 }
 
 installffaddons(){
-	addonlist="ublock-origin decentraleyes istilldontcareaboutcookies"
+	addonlist="tridactyl-vim localcdn-fork-of-decentraleyes istilldontcareaboutcookies libredirect darkreader"
 	addontmp="$(mktemp -d)"
 	trap "rm -fr $addontmp" HUP INT QUIT TERM PWR EXIT
 	IFS=' '
@@ -221,6 +221,7 @@ installffaddons(){
 		sudo -u "$name" mv "$file" "$pdir/extensions/$id.xpi"
 	done
 }
+
 
 installdefaultwallpapers() {
 	wallpaperspath="/home/$name/Pictures/Wallpapers"
@@ -329,8 +330,8 @@ profilesini="$browserdir/profiles.ini"
 
 # Start librewolf headless so it generates a profile. Then get that profile in a variable.
 sudo -u "$name" librewolf --headless >/dev/null 2>&1 &
-sleep 1
-profile="$(sed -n "/Default=.*.default-release/ s/.*=//p" "$profilesini")"
+sleep 2
+profile="$(sed -n "/Default=.*.default-\(default\|release\)/ s/.*=//p" "$profilesini")"
 pdir="$browserdir/$profile"
 
 [ -d "$pdir" ] && installffaddons
