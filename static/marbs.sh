@@ -108,7 +108,25 @@ Include = /etc/pacman.d/mirrorlist-arch" >>/etc/pacman.conf
 		;;
 	esac
 }
-
+enablekeyd() {
+	case "$(readlink -f /sbin/init)" in
+	*systemd*)
+        systemctl enable keyd
+        ;;
+	*runit*)
+        servicesdir="/etc/runit/sv"
+        keydservice="$servicesdir/keyd"
+        [ -d "$keydservice" ] && return 1
+        mkdir $keydservice
+        echo '#!/bin/sh\nexec keyd' > "$keydservice/run"
+        chmod u+x "$keydservice/run"
+        ln -s /etc/runit/sv/keyd /run/runit/service
+        ;;
+    *)
+        echo "No compatible init system detected. Feel free to make a pull request"
+        ;;
+    esac
+}
 manualinstall() {
 	# Installs $1 manually. Used for AUR helper as well as
 	# custom user programs
@@ -221,7 +239,6 @@ installffaddons(){
 		sudo -u "$name" mv "$file" "$pdir/extensions/$id.xpi"
 	done
 }
-
 
 installdefaultwallpapers() {
 	wallpaperspath="/home/$name/Pictures/Wallpapers"
@@ -339,6 +356,7 @@ pdir="$browserdir/$profile"
 # Kill the now unnecessary librewolf instance.
 pkill -u "$name" librewolf
 
+#
 # Allow wheel users to sudo with password and allow several system commands
 # (like `shutdown` to run without password).
 echo "%wheel ALL=(ALL:ALL) ALL" >/etc/sudoers.d/00-marbs-wheel-can-sudo
