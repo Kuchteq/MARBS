@@ -156,12 +156,13 @@ manualinstall() {
 			sudo -u "$name" git pull --force origin master
 		}
 	cd "$repodir/$reponame" || exit 1
-	sudo -u "$name" -D "$repodir/$reponame" \
 	# you can change it to git pull if you don't want to make the hidpi branch your main one
 	if $hidpi && echo "$hidpirepos" | grep -q "$reponame"; then
 		sudo -u "$name" git fetch origin hidpi:hidpi
 		sudo -u "$name" git checkout hidpi
 	fi
+
+	sudo -u "$name" -D "$repodir/$reponame" \
 	makepkg -sif --noconfirm >/dev/null 2>&1 || return 1
 }
 
