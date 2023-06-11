@@ -10,7 +10,8 @@ dotfilesrepo="https://github.com/kuchteq/wayrice.git"
 progsfile="https://raw.githubusercontent.com/Kuchteq/MARBS/master/static/progs.csv"
 aurhelper="paru"
 repobranch="master"
-hidpi=true
+hidpi=false
+hidpirepos="somebar"
 export TERM=ansi
 
 
@@ -55,6 +56,13 @@ usercheck() {
 		whiptail --title "WARNING" --yes-button "CONTINUE" \
 			--no-button "No wait..." \
 			--yesno "The user \`$name\` already exists on this system. MARBS can install for a user already existing, but it will OVERWRITE any conflicting settings/dotfiles on the user account.\\n\\nMARBS will NOT overwrite your user files, documents, videos, etc., so don't worry about that, but only click <CONTINUE> if you don't mind your settings being overwritten.\\n\\nNote also that MARBS will change $name's password to the one you just gave." 14 70
+}
+
+hidpisetup() {
+	whiptail --title "Do you want the hidpi setup?" --yes-button "My setup requires hidpi!" \
+		--no-button "Nope, I'm all good" \
+		--yesno "If your monitor resolution is large, for example 2K or 4K you most likely want this." 8 70 && hidpi=true
+
 }
 
 preinstallmsg() {
@@ -149,7 +157,11 @@ manualinstall() {
 		}
 	cd "$repodir/$reponame" || exit 1
 	sudo -u "$name" -D "$repodir/$reponame" \
-	#setrepodpi "$reponame"
+	# you can change it to git pull if you don't want to make the hidpi branch your main one
+	if $hidpi && echo "$hidpirepos" | grep -q "$reponame"; then
+		sudo -u "$name" git fetch origin hidpi:hidpi
+		sudo -u "$name" git checkout hidpi
+	fi
 	makepkg --noconfirm -si >/dev/null 2>&1 || return 1
 }
 
@@ -221,6 +233,8 @@ putgitrepo() {
 		--single-branch --no-tags -q --recursive -b "$branch" \
 		--recurse-submodules "$1" "$dir"
 	sudo -u "$name" cp -rfT "$dir" "$2"
+	# If the hidpi option is selected, use the hidpiconf command to transform some configs
+	$hidpi && sudo -u "$name" /home/$name/.local/bin/hidpiconf -m
 }
 
 installffaddons(){
@@ -270,6 +284,8 @@ getuserandpass || error "User exited."
 
 # Give warning if user already exists.
 usercheck || error "User exited."
+
+hidpisetup || error "User exited."
 
 # Last chance for user to back out before install.
 preinstallmsg || error "User exited."
@@ -355,6 +371,8 @@ pdir="$browserdir/$profile"
 
 # Kill the now unnecessary librewolf instance.
 pkill -u "$name" librewolf
+
+enablekeyd
 
 #
 # Allow wheel users to sudo with password and allow several system commands
