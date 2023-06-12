@@ -1,4 +1,4 @@
-# Mariusz's Auto-Rice Bootstrapping Scripts (LARBS)
+# Mariusz's Auto-Rice Bootstrapping Scripts (MARBS)
 
 ## Installation:
 
@@ -42,7 +42,7 @@ git repository that is meant to be `make && sudo make install`ed.
 
 The second column is the name of the program in the repository, or the link to
 the git repository, and the third column is a description (should be a verb
-phrase) that describes the program. During installation, LARBS will print out
+phrase) that describes the program. During installation, MARBS will print out
 this information in a grammatical sentence. It also doubles as documentation
 for people who read the CSV and want to install my dotfiles manually.
 
