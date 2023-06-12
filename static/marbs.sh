@@ -286,7 +286,7 @@ getuserandpass || error "User exited."
 # Give warning if user already exists.
 usercheck || error "User exited."
 
-hidpisetup || error "User exited."
+hidpisetup
 
 # Last chance for user to back out before install.
 preinstallmsg || error "User exited."
