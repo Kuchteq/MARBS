@@ -32,7 +32,7 @@ G,https://git.sr.ht/~maniu/imv, "is a brilliant, minimalistic image viewer for w
 ,bat, "can highlight code output and display files and is used to generate previews in the file browser."
 A,htop-vim, "is a graphical and colorful system monitor."
 S,https://github.com/Kuchteq/dwl.git, "is the window manager."
-S,https://github.com/Kuchteq/somebar.git, "is the statusbar for displaying tags and app titles."
+S,https://github.com/Kuchteq/dwlb.git, "is the statusbar for displaying tags and app titles."
 S,https://github.com/Kuchteq/someblocks.git, "is the statusbar for displaying user defined blocks."
 ,xdg-desktop-portal-wlr, "provides the portals functionality and later on gets replaced by my version that adds functionality"
 S,https://github.com/Kuchteq/xdg-desktop-portal-wlr-plus-filechooser.git, "provides the portals functionality used by browsers for webrtc and file picking."
