@@ -117,6 +117,7 @@ Include = /etc/pacman.d/mirrorlist-arch" >>/etc/pacman.conf
 	esac
 }
 enablekeyd() {
+    ln -s /home/$name/.config/keyd/default.conf /etc/keyd/default.conf
 	case "$(readlink -f /sbin/init)" in
 	*systemd*)
         systemctl enable keyd
