@@ -11,7 +11,8 @@ progsfile="https://raw.githubusercontent.com/Kuchteq/MARBS/master/static/progs.c
 aurhelper="paru"
 repobranch="master"
 hidpi=false
-hidpirepos="somebar"
+wantkeyd=false
+#hidpirepos="somebar"
 export TERM=ansi
 
 
@@ -62,6 +63,13 @@ hidpisetup() {
 	whiptail --title "Do you want the hidpi setup?" --yes-button "My setup requires hidpi!" \
 		--no-button "Nope, I'm all good" \
 		--yesno "If your monitor resolution is large, for example 2K or 4K you most likely want this." 8 70 && hidpi=true
+
+}
+
+hidpisetup() {
+	whiptail --title "Do you want keyd keyboard remapper" --yes-button "Yup" \
+		--no-button "Nope, I'm all good" \
+		--yesno "It is recommended to enable it as it makes your life easier. To look for what keys are modified see /home/$name.config/keyd/default" 8 70 && wantkeyd=true
 
 }
 
@@ -117,6 +125,7 @@ Include = /etc/pacman.d/mirrorlist-arch" >>/etc/pacman.conf
 	esac
 }
 enablekeyd() {
+    ! [ -d "/etc/keyd" ] && mkdir /etc/keyd
     ln -s /home/$name/.config/keyd/default.conf /etc/keyd/default.conf
 	case "$(readlink -f /sbin/init)" in
 	*systemd*)
@@ -158,10 +167,10 @@ manualinstall() {
 		}
 	cd "$repodir/$reponame" || exit 1
 	# you can change it to git pull if you don't want to make the hidpi branch your main one
-	if $hidpi && echo "$hidpirepos" | grep -q "$reponame"; then
-		sudo -u "$name" git fetch origin hidpi:hidpi
-		sudo -u "$name" git checkout hidpi
-	fi
+        #	if $hidpi && echo "$hidpirepos" | grep -q "$reponame"; then
+        #		sudo -u "$name" git fetch origin hidpi:hidpi
+        #		sudo -u "$name" git checkout hidpi
+        #	fi
 
 	sudo -u "$name" -D "$repodir/$reponame" \
 	makepkg -sif --noconfirm >/dev/null 2>&1 || return 1
@@ -264,6 +273,14 @@ installdefaultwallpapers() {
 	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/lock_wallpaper_light.jpg" > "$wallpaperspath/lock_wallpaper_light.jpg"
 	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/lock_wallpaper_dark.jpg" > "$wallpaperspath/lock_wallpaper_dark.jpg"
 }
+
+configuseradjust() {
+    # Some config files such as xdg-portals can't interpret the shell values themselves. Hence while pulling the dotfiles, they need to get replaced
+    export SUBSTITUTED_USERHOME="/home/$name"
+    currentadjustment="/home/$name/.config/xdg-desktop-portal-wlr/config"
+    [ -f $currentadjustment ] && sudo -u "$name" envsubst < $currentadjustment > $currentadjustment # todo fix this
+}
+
 
 finalize() {
 	whiptail --title "All done!" \
@@ -374,7 +391,7 @@ pdir="$browserdir/$profile"
 # Kill the now unnecessary librewolf instance.
 pkill -u "$name" librewolf
 
-enablekeyd
+wantkeyd && enablekeyd
 
 #
 # Allow wheel users to sudo with password and allow several system commands

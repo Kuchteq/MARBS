@@ -46,7 +46,7 @@ Here are the main programs, all with extra information here:
 
 - [dwl](/dwm) -- the main graphical environment
 - [foot](/st) -- the terminal
-- [somebar](/dwmblocks) -- statusbar
+- [dwlb](/dwmblocks) -- statusbar
 - [zsh](zsh) -- the shell
 - [Librewolf](librewolf) -- browser
 - [lf](/lf) -- file manager
