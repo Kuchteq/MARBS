@@ -1,6 +1,6 @@
-baseURL = 'https://larbs.xyz/'
+baseURL = 'https://marbs.kuchta.dev.xyz/'
 languageCode = 'en-us'
-title = 'LARBS'
+title = 'MARBS'
 
 theme = 'lugo'
 

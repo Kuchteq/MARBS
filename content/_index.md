@@ -3,7 +3,7 @@ title: "MARBS"
 layout: single
 ---
 
-{{< img src="/pix/marbs.png" class=normal >}}
+{{< img src="/pix/MarbsTux.svg" class=normal >}}
 
 MARBS is an efficient shell script that will install a fully-featured tiling window manager-based system on any Arch or [Artix](https://artixlinux.org) Linux-based system, without any of the routine of manual post-install processes and configuration (mostly).
 
@@ -12,7 +12,7 @@ MARBS is an efficient shell script that will install a fully-featured tiling win
 Is MARBS for you? Probably yes. I don't know how else you would've found this site. The script is for three types of people:
 
 1. People who already know their stuff and just want to automate installing a system without doing the boring stuff you've done a million times.
-2. MARBS users and those who postpone the migration from Xorg to Wayland
+2. LARBS users and those who postpone the migration from Xorg to Wayland
 3. Novices who want to use and learn about a leet hackerman computer setup like those in the movies for either efficiency or looking cool.
 
 

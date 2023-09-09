@@ -34,14 +34,12 @@
 {{ block "footer" . -}}
 <footer>
 	<hr>
-	<a href="{{ .Site.BaseURL }}"><img src="/pix/larbs.gif" title="LARBS: Because n00buntu is bloated." ></a>
+	<a href="{{ .Site.BaseURL }}"><img src="/pix/marbsbetter.gif" title="MARBS: Because n00buntu is bloated and windows is rubbish." ></a>
 	<br>
-	<em>official larbs donation fund:</em>
-	<ul>
-		<li>xmr: <code style="font-size:x-small;overflow-wrap:break-word">8A2cBbmN9p9Ruz8e1526Nscz28gfPS1GveitMY3V7RnpLwdExmQNddY4a49Hi7wNbM2yV8vrBZF8zcKCTHMqRUb82CUMEJj</code></li>
-		<li>btc: <code class="">bc1qhx0elzzpyxy5fvz0x662zh9efghcxgt4knc7w4</code></li>
-	</ul>
-	{{- if .Param "showrss" }}<br><br><a href="/index.xml"><img src="/rss.svg" style="max-height:1.5em" alt="RSS Feed" title="Subscribe via RSS for updates."></a>{{ end }}
+	<em>MARBS is based on Luke Smith's LARBS and some copywriting present here was also written by him.</em>
+		Check out LARBS at: <a href="https://larbs.xyz/" style="overflow-wrap:break-word">https://larbs.xyz</a>
+	{{- if .Param "showrss" }}<br><br><a href="/index.xml"><img src="/rss.svg" style="max-height:1.5em" alt="RSS Feed" title="Subscribe via RSS for updates."></a><a href="https://github.com/Kuchteq/MARBS"><img src="/ghub.svg" style="margin-left:1rem; max-height:1.5em" alt="Project Github" title="Commit to Github"></a>
+        {{ end }}
 
 </footer>
 {{ end -}}
