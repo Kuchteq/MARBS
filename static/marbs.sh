@@ -267,18 +267,21 @@ installffaddons(){
 
 installdefaultwallpapers() {
 	wallpaperspath="/home/$name/Pictures/Wallpapers"
-	mkdir -p "$wallpaperspath"
+	sudo -u "$name" mkdir -p "$wallpaperspath"
 	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/wallpaper_dark.jpg" > "$wallpaperspath/wallpaper_dark.jpg"
 	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/wallpaper_light.jpg" > "$wallpaperspath/wallpaper_light.jpg"
 	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/lock_wallpaper_light.jpg" > "$wallpaperspath/lock_wallpaper_light.jpg"
 	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/lock_wallpaper_dark.jpg" > "$wallpaperspath/lock_wallpaper_dark.jpg"
 }
 
-configuseradjust() {
+miscadjustments() {
+    sudo -u "$name" mkdir -p "/home/$name/Pictures/Screenshots"
+    sudo -u "$name" mkdir -p "/home/$name/Videos/Screenrecordings"
+    sudo -u "$name" mkdir -p "/home/$name/.local/share/gnupg"
+    chmod 0600 "/home/$name/.local/share/gnupg" # since we change $GNUPGHOME to this path we need to have this folder created or else we encounter errors when getting packages from aur 
+
     # Some config files such as xdg-portals can't interpret the shell values themselves. Hence while pulling the dotfiles, they need to get replaced
-    export SUBSTITUTED_USERHOME="/home/$name"
-    currentadjustment="/home/$name/.config/xdg-desktop-portal-wlr/config"
-    [ -f $currentadjustment ] && sudo -u "$name" envsubst < $currentadjustment > $currentadjustment # todo fix this
+    
 }
 
 

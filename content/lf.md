@@ -3,28 +3,25 @@ title: "lf"
 date: 2022-12-21T17:07:04-05:00
 ---
 
-lf is the file manager used in LARBS.
-It was original inspired by the program ranger, but unlike ranger, lf is written in Go instead of Python, so is significantly snappier and adds better features for interaction between different lf instances.
+lf is the file manager used in MARBS.
+lf is awesome and makes you look cool even in front of the people who know their shit.
 
-{{< img src="/pix/lf.png" class=normal caption="Note that lf uses ueberzug to produce previews of images, or here, a .pdf." >}}
+{{< img src="/pix/lf.png" class=normal caption="lf uses terminal sixels to display previews in full quality! No weird x11 hacks like ueberzug!" >}}
 
 ## Running
 
-Run lf by pressing <kbd>super + r</kbd>, or type `lf` manually in the termianl.
+Run lf by pressing <kbd>MOD(alt) + o</kbd>, or type press <kbd>ctrl+o</kbd> inside the terminal (or just simply type lf there).
 
 ## Bindings
 
 - <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd> <kbd>l</kbd> (vim keys) to move around and enter directories and open files.
-- <kbd>g</kbd>, <kbd>G</kbd>, <kbd>ctrl-d</kbd>,  <kbd>ctrl-u</kbd> -- movement like in vim.
-- <kbd>w</kbd> -- drop into a terminal in the current directory. If you `exit` or press <kbd>ctrl-d</kbd> in the termianl, you will return to `lf`.
-- <kbd>ctrl-n</kbd> -- new directory.
+- <kbd>gg</kbd>, <kbd>G</kbd>, <kbd>ctrl-d</kbd>,  <kbd>ctrl-u</kbd> -- movement like in vim.
+- <kbd>q</kbd> -- exit lf and get back to the shell if you had one open.
 - <kbd>V</kbd> -- new file with `nvim`.
 - <kbd>space</kbd> -- select files:
 	- <kbd>d</kbd> -- cut files to lf's clipboard.
 	- <kbd>y</kbd> -- yank files to lf's clipboard.
 	- <kbd>p</kbd> -- paste/move copied/cut files.
-	- <kbd>C</kbd> -- copy selected files to a bookmarked directory.
-	- <kbd>M</kbd> -- move selected files to a bookmarked directory.
 	- <kbd>Y</kbd> -- copy text names of selected files to the system clipboard.
 - Renaming files:
 	- <kbd>c</kbd> -- rename the selected file.
@@ -50,5 +47,4 @@ The other files in the `~/.config/lf/` directory are run automatically when need
 ## Notes
 
 Notice that `alias lf` will tell you that technically you are running the
-wrapper script `lfub` when you run `lf`. This has to do with `ueberzug`, the
-program that generates image previews.
+wrapper script `lfrun` when you run `lf`. This has to do with `sixel previews`.

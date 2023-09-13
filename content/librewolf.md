@@ -7,14 +7,10 @@ Librewolf is a version of Firefox with Mozilla's odious spyware removed.
 
 ## Running
 
-Press <kbd>super + w</kbd> or run `librewolf` in dmenu.
+Press <kbd>MOD + w</kbd> or run `librewolf` in dmenu.
 
 ## Improvements to Librewolf in LARBS
 
-### Arkenfox's user.js
-
-With LARBS, [Arkenfox's user.js](https://github.com/arkenfox/user.js) is installed by default.
-This is a set of default settings that set settings that increase user privacy and decrease the possibility of fingerprinting.
 
 ### Other tweaks
 

@@ -22,7 +22,7 @@ Firstly, ncmpcpp has many different screens accessible through the number keys <
 
 - <kbd>m</kbd> -- main music library (press key again to alternate album/album artist views).
 - <kbd>v</kbd> -- visualizer.
-- <kbd>f</kbd> -- library by directory structure.
+- <kbd>ctrl+o</kbd> -- library by directory structure.
 - <kbd>t</kbd> -- tagger.
 - <kbd>s</kbd> -- detailed search.
 - <kbd>1</kbd> -- current playlist.
