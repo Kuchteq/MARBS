@@ -59,14 +59,14 @@ usercheck() {
 			--yesno "The user \`$name\` already exists on this system. MARBS can install for a user already existing, but it will OVERWRITE any conflicting settings/dotfiles on the user account.\\n\\nMARBS will NOT overwrite your user files, documents, videos, etc., so don't worry about that, but only click <CONTINUE> if you don't mind your settings being overwritten.\\n\\nNote also that MARBS will change $name's password to the one you just gave." 14 70
 }
 
-hidpisetup() {
+hidpisetupask() {
 	whiptail --title "Do you want the hidpi setup?" --yes-button "My setup requires hidpi!" \
 		--no-button "Nope, I'm all good" \
 		--yesno "If your monitor resolution is large, for example 2K or 4K you most likely want this." 8 70 && hidpi=true
 
 }
 
-hidpisetup() {
+keydsetupask() {
 	whiptail --title "Do you want keyd keyboard remapper" --yes-button "Yup" \
 		--no-button "Nope, I'm all good" \
 		--yesno "It is recommended to enable it as it makes your life easier. To look for what keys are modified see /home/$name.config/keyd/default" 8 70 && wantkeyd=true
@@ -307,7 +307,9 @@ getuserandpass || error "User exited."
 # Give warning if user already exists.
 usercheck || error "User exited."
 
-hidpisetup
+keydsetupask
+
+hidpisetupask
 
 # Last chance for user to back out before install.
 preinstallmsg || error "User exited."
@@ -395,6 +397,8 @@ pdir="$browserdir/$profile"
 pkill -u "$name" librewolf
 
 wantkeyd && enablekeyd
+
+miscadjustments
 
 #
 # Allow wheel users to sudo with password and allow several system commands
