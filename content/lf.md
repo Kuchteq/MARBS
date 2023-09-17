@@ -13,27 +13,23 @@ lf is awesome and makes you look cool even in front of the people who know their
 Run lf by pressing <kbd>MOD(alt) + o</kbd>, or type press <kbd>ctrl+o</kbd> inside the terminal (or just simply type lf there).
 
 ## Bindings
-
+### [🗎 PDF cheat sheet](/lf_guide.pdf)
 - <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd> <kbd>l</kbd> (vim keys) to move around and enter directories and open files.
 - <kbd>gg</kbd>, <kbd>G</kbd>, <kbd>ctrl-d</kbd>,  <kbd>ctrl-u</kbd> -- movement like in vim.
 - <kbd>q</kbd> -- exit lf and get back to the shell if you had one open.
-- <kbd>V</kbd> -- new file with `nvim`.
 - <kbd>space</kbd> -- select files:
 	- <kbd>d</kbd> -- cut files to lf's clipboard.
 	- <kbd>y</kbd> -- yank files to lf's clipboard.
 	- <kbd>p</kbd> -- paste/move copied/cut files.
-	- <kbd>Y</kbd> -- copy text names of selected files to the system clipboard.
-- Renaming files:
-	- <kbd>c</kbd> -- rename the selected file.
-	- <kbd>A</kbd> -- rename the selected file, starting at end.
-	- <kbd>a</kbd> -- rename the selected file, starting after the extension.
-	- <kbd>I</kbd> -- rename the selected file, starting at beginning.
-	- <kbd>i</kbd> -- rename the selected file, starting before extension.
+	- <kbd>Yf</kbd> -- copy currently focused file to system clipboard.
+	- <kbd>Yd</kbd> -- copy current working directory to system clipboard.
+	- <kbd>r</kbd> -- rename currently focused file.
 	- <kbd>B</kbd> -- **bulk rename**: use vidir to mass edit all files in the directory.
 - <kbd>s</kbd> -- sort files by a different metric.
-- <kbd>z</kbd> -- show extra data or hidden files.
+- <kbd>z</kbd> -- show extra data.
+- <kbd>.</kbd> -- show hidden files.
 
-This list is not necessarily exhaustive. See `man lf` and the lf configuration file for more.
+This list is not exhaustive. See `man lf` and the lf configuration files for more.
 
 ## lf's configuration files
 

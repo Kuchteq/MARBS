@@ -40,4 +40,9 @@ So it goes without saying that people who pull up seven windows and some pics of
 ## Running
 
 Run `htop` by typing it in the terminal.
-I even bound it to <kbd>super + shift + r</kbd> just for fun because I wasn't using that key for anything important.
+Available as a quick action by pressing <kbd>MOD + q</kbd> and then <kbd>h</kbd>
+
+## Bindings
+
+The actual version used on Marbs is called htop-vim, meaning it has vim's keybinding.
+

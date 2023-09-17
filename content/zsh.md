@@ -3,7 +3,7 @@ title: "Zsh"
 date: 2023-01-19T10:24:07-05:00
 ---
 
-zsh is the shell used by LARBS.
+zsh is the shell used by MARBS.
 
 ## Files
 

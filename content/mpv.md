@@ -19,6 +19,7 @@ mpv is opened automatically when you select a video or audio file to open from [
 Obviously you can run it from the command line by running `mpv filename.mp4`, etc.
 
 ## Bindings
+### [🗎 PDF cheat sheet](/mpv_guide.pdf)
 
 These are custom bindings for ease:
 
@@ -38,7 +39,4 @@ These are custom bindings for ease:
 ## Other
 
 - If you download films, I recommend installing the program `subdl`, which you can run on a movie file and it will automatically check online for subtitle files. Give it the `-i` option to choose from the closest matches if the first result is slightly off.
-- The LARBS binding <kbd>super + shift + P</kbd> will not only pause you music played in `mpd`, but also all audio/video instances of `mpv`.
-- Press <kbd>super + F11</kbd> to see your webcam. This uses an instance of `mpv` as well.
 
-GPLv2

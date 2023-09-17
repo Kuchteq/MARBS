@@ -12,9 +12,9 @@ Yes. I'm sorry it's unpronounceable, but it's the best at what it does...
 
 ## Running
 
-Press <kbd>super + m</kbd>, or type `ncmpcpp` in the terminal.
+Run `Music Player` using the launcher (MOD + space) or type `ncmpcpp` in the terminal.
 
-For ncmpcpp to run, you should have [mpd](/mpd) set up and have audio files in your mpd directory.
+For ncmpcpp to run, you should have [mpd](/mpd) set up and have audio files in your mpd directory. (the simple `muzyka` script ensures that mpd is running before opening ncmpcpp so you can use that instead).
 
 ## Bindings
 

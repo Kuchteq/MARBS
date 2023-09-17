@@ -53,16 +53,17 @@ Here are the main programs, all with extra information here:
 - [newsboat](newsboat) -- RSS feeds and news
 - [htop](htop) -- to look cool in screencaps... err... system monitor
 
+## Learning the system is fun and easy!
+
+You can figure out about the system in a lot of different ways:
+
+- [Get the PDF cheat sheet bundle](/marbs_bundle.zip) containing documents with keybindings for all the programs. Unzip it using `unzip marbs_bundle.zip`.
+- The many illustrative videos on [Luke Smith's YouTube channel](https://youtube.com/lukesmithxyz).
+- The documentation on the <a href="https://github.com/Kuchteq/MARBS">Github</a> page.
+- By just installing it and diving in!
+
 ## No un-features
 
 - No proprietary software or spyware.
 - No snaps or flatpaks or Mac-lite garbage. GNU/Linux the way it's supposed to be.
 - No branding cringe. Once you run MARBS, you have **your own** system, not mine!
-
-## Learning the system is fun and easy!
-
-You can figure out about the system in a lot of different ways:
-
-- The many illustrative videos on [Luke's YouTube channel](https://youtube.com/lukesmithxyz)
-- The documentation on the <a href="https://github.com/Kuchteq/MARBS">Github</a> page.
-- By just installing it and diving in!
