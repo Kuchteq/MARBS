@@ -12,7 +12,6 @@ aurhelper="paru"
 repobranch="master"
 hidpi=false
 wantkeyd=false
-#hidpirepos="somebar"
 export TERM=ansi
 
 
@@ -62,6 +61,7 @@ usercheck() {
 hidpisetupask() {
 	whiptail --title "Do you want the hidpi setup?" --yes-button "My setup requires hidpi!" \
 		--no-button "Nope, I'm all good" \
+                --defaultno \
 		--yesno "If your monitor resolution is large, for example 2K or 4K you most likely want this." 8 70 && hidpi=true
 
 }
@@ -69,7 +69,7 @@ hidpisetupask() {
 keydsetupask() {
 	whiptail --title "Do you want keyd keyboard remapper" --yes-button "Yup" \
 		--no-button "Nope, I'm all good" \
-		--yesno "It is recommended to enable it as it makes your life easier. To look for what keys are modified see /home/$name.config/keyd/default" 8 70 && wantkeyd=true
+		--yesno "It is recommended to enable it as it makes your life easier. To look for what keys are modified see /home/$name/.config/keyd/default" 8 70 && wantkeyd=true
 
 }
 
@@ -152,11 +152,11 @@ manualinstall() {
 	if [ -z "$2" ]; then
 		reponame=$1
 		reposource="https://aur.archlinux.org/$reponame.git"
+                pacman -Qq "$reponame" && return 0 # only the aur helper shouldn't be recompiled
 	else
 		reponame=$(echo $1 | grep -oE '[^/]+$' | cut -d'.' -f1)
 		reposource=$1
 	fi
-	pacman -Qq "$reponame" && return 0
 	whiptail --infobox "Installing \"$1\" manually." 7 50
 	sudo -u "$name" mkdir -p "$repodir/$reponame"
 	sudo -u "$name" git -C "$repodir" clone --depth 1 --single-branch \
@@ -165,15 +165,8 @@ manualinstall() {
 			cd "$repodir/$reponame" || return 1
 			sudo -u "$name" git pull --force origin master
 		}
-	cd "$repodir/$reponame" || exit 1
-	# you can change it to git pull if you don't want to make the hidpi branch your main one
-        #	if $hidpi && echo "$hidpirepos" | grep -q "$reponame"; then
-        #		sudo -u "$name" git fetch origin hidpi:hidpi
-        #		sudo -u "$name" git checkout hidpi
-        #	fi
-
-	sudo -u "$name" -D "$repodir/$reponame" \
-	makepkg -sif --noconfirm >/dev/null 2>&1 || return 1
+	cd "$repodir/$reponame" || return 1
+	sudo -u "$name" makepkg -sif --noconfirm >/dev/null 2>&1 || return 1
 }
 
 maininstall() {
@@ -245,7 +238,7 @@ putgitrepo() {
 		--recurse-submodules "$1" "$dir"
 	sudo -u "$name" cp -rfT "$dir" "$2"
 	# If the hidpi option is selected, use the hidpiconf command to transform some configs
-	$hidpi && sudo -u "$name" /home/$name/.local/bin/hidpiconf -m
+	[ "$hidpi" ] && sudo -u "$name" /home/$name/.local/bin/hidpiconf -m
 }
 
 installffaddons(){
@@ -273,17 +266,6 @@ installdefaultwallpapers() {
 	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/lock_wallpaper_light.jpg" > "$wallpaperspath/lock_wallpaper_light.jpg"
 	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/lock_wallpaper_dark.jpg" > "$wallpaperspath/lock_wallpaper_dark.jpg"
 }
-
-miscadjustments() {
-    sudo -u "$name" mkdir -p "/home/$name/Pictures/Screenshots"
-    sudo -u "$name" mkdir -p "/home/$name/Videos/Screenrecordings"
-    sudo -u "$name" mkdir -p "/home/$name/.local/share/gnupg"
-    chmod 0600 "/home/$name/.local/share/gnupg" # since we change $GNUPGHOME to this path we need to have this folder created or else we encounter errors when getting packages from aur 
-
-    # Some config files such as xdg-portals can't interpret the shell values themselves. Hence while pulling the dotfiles, they need to get replaced
-    
-}
-
 
 finalize() {
 	whiptail --title "All done!" \
@@ -364,11 +346,15 @@ rm -rf "/home/$name/README.md" "/home/$name/LICENSE" "/home/$name/FUNDING.yml"
 rmmod pcspkr
 echo "blacklist pcspkr" >/etc/modprobe.d/nobeep.conf
 
-# Make zsh the default shell for the user.
+# Make zsh the default shell for the user and set up folders which the system would usually expect.
 chsh -s /bin/zsh "$name" >/dev/null 2>&1
 sudo -u "$name" mkdir -p "/home/$name/.cache/zsh/"
 sudo -u "$name" mkdir -p "/home/$name/.config/abook/"
 sudo -u "$name" mkdir -p "/home/$name/.config/mpd/playlists/"
+sudo -u "$name" mkdir -p "/home/$name/Pictures/Screenshots"
+sudo -u "$name" mkdir -p "/home/$name/Videos/Screenrecordings"
+sudo -u "$name" mkdir -p "/home/$name/.local/share/gnupg"
+chmod 0600 "/home/$name/.local/share/gnupg" # since we change $GNUPGHOME to this path we need to have this folder created or else we encounter errors when getting packages from aur 
 
 installdefaultwallpapers
 
@@ -398,7 +384,6 @@ pkill -u "$name" librewolf
 
 wantkeyd && enablekeyd
 
-miscadjustments
 
 #
 # Allow wheel users to sudo with password and allow several system commands
