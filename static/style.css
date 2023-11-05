@@ -89,6 +89,7 @@ footer {
 	display: block ;
 }
 
+
 figcaption {
 	text-align: center ;
 	display: block ;
@@ -102,4 +103,10 @@ kbd {
   border: 1px solid black ;
   background: #222 ;
   color: white ;
+}
+
+.fullwidth img {
+	margin: auto ;
+	max-width: 100% ;
+	display: block ;
 }
