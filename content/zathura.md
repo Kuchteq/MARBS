@@ -11,7 +11,7 @@ And it is absolutely the best.
 run `zathura` passing in a fill or just `z` inside the terminal. MARBS dotfiles have automatically configured zathura to open PDFs inside lf.
 
 ## Bindings
-### [🗎 PDF cheat sheet](/zathura_guide.pdf)
+### [🗎 PDF cheat sheet](/programdocs/zathura_guide.pdf)
 - <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd> <kbd>l</kbd> (vim keys) to move around the document.
 
 ## zathura's configuration files

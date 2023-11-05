@@ -5,11 +5,11 @@ date: 2023-01-19T10:02:07-05:00
 
 foot terminal emulator
 
-{{< img src=/pix/foot.png link=/foot/st.png caption="Fruity Footie" class=normal >}}
+{{< img src=/pix/foot.png caption="Fruity Footie" class=normal >}}
 
 ## Running
 
-Press <kbd>super + enter</kbd> for a basic terminal window.
+Press <kbd>alt + space</kbd> for a basic terminal window.
 
 ## Documentation
 
@@ -18,7 +18,7 @@ The actual terminal that is run by default is a wrapper script called footie, th
 
 ## Bindings
 
-- <kbd>shift + pageup/pagedown</kbd><kbd>alt + mouse wheel</kbd> -- scroll up or down in the terminal history.
+- <kbd>shift + pageup/pagedown</kbd> -- scroll up or down in the terminal history.
 - <kbd>ctrl + shift + r </kbd> -- enter search mode.
 - <kbd>ctrl + k </kbd> -- ( in search mode ) go to next result.
 - <kbd>ctrl + j </kbd> -- ( in search mode ) go to previous result.

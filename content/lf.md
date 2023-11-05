@@ -13,7 +13,7 @@ lf is awesome and makes you look cool even in front of the people who know their
 Run lf by pressing <kbd>MOD(alt) + o</kbd>, or type press <kbd>ctrl+o</kbd> inside the terminal (or just simply type lf there).
 
 ## Bindings
-### [🗎 PDF cheat sheet](/lf_guide.pdf)
+### [🗎 PDF cheat sheet](/programdocs/lf_guide.pdf)
 - <kbd>h</kbd>, <kbd>j</kbd>, <kbd>k</kbd> <kbd>l</kbd> (vim keys) to move around and enter directories and open files.
 - <kbd>gg</kbd>, <kbd>G</kbd>, <kbd>ctrl-d</kbd>,  <kbd>ctrl-u</kbd> -- movement like in vim.
 - <kbd>q</kbd> -- exit lf and get back to the shell if you had one open.

@@ -23,6 +23,6 @@ Several add-ons come installed by default.
 Note that they can be immediately enabled by the user in the top right corner, but might not come enabled.
 
 - [uBlock Origin](https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/) -- ad-blocker.
-- [Decentraleyes](https://addons.mozilla.org/en-US/firefox/addon/localcdn-fork-of-decentraleyes/) -- fork of the popular Decentraleyes, decreases calls made to the big CDN providers for various web frameworks and assets.
+- [LocalCDN](https://addons.mozilla.org/en-US/firefox/addon/localcdn-fork-of-decentraleyes/) -- fork of the popular Decentraleyes, decreases calls made to the big CDN providers for various web frameworks and assets.
 - [I still don't care about cookies](https://addons.mozilla.org/en-US/firefox/addon/istilldontcareaboutcookies/) -- removes those stupid cookie notifications that try to annoyingly ask you for your data.
 - [Tridactyl](https://addons.mozilla.org/en-US/firefox/addon/tridactyl-vim/) -- vim key-bindings for the web.

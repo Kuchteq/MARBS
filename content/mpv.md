@@ -19,7 +19,7 @@ mpv is opened automatically when you select a video or audio file to open from [
 Obviously you can run it from the command line by running `mpv filename.mp4`, etc.
 
 ## Bindings
-### [🗎 PDF cheat sheet](/mpv_guide.pdf)
+### [🗎 PDF cheat sheet](/programdocs/mpv_guide.pdf)
 
 These are custom bindings for ease:
 
