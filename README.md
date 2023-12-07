@@ -19,6 +19,12 @@ and minimal terminal-and-vim-based Arch Linux environment.
 MARBS can be run on a fresh install of Arch or Artix Linux, and provides you
 with a fully configured diving-board for work or more customization.
 
+## Why MARBS
+- Modern - uses Wayland and the native apps made for it.
+- Tight tool integration and seamlessness. MARBS calls itself a meta-desktop environment due to how various programs integrate with each other. From the way the LF file manager is baked into nvim to having that same LF as an actual file picker/saver within your browser and apps that support (xdg-desktop-portals).There are many of those integrations throughout the environment.
+- Dynamic dark/light mode toggle for the apps that support it.
+- Help getting started with documentation and tutorial videos at [marbs.kuchta.dev](https://marbs.kuchta.dev)
+
 ## Customization
 
 By default, MARBS uses the programs [here in progs.csv](static/progs.csv) and installs
