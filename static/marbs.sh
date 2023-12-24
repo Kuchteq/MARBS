@@ -238,7 +238,7 @@ putgitrepo() {
 		--recurse-submodules "$1" "$dir"
 	sudo -u "$name" cp -rfT "$dir" "$2"
 	# If the hidpi option is selected, use the hidpiconf command to transform some configs
-	[ "$hidpi" ] && sudo -u "$name" /home/$name/.local/bin/hidpiconf -m
+	[ "$hidpi" = true ] && sudo -u "$name" /home/$name/.local/bin/hidpiconf -m
 }
 
 installffaddons(){
@@ -382,7 +382,7 @@ pdir="$browserdir/$profile"
 # Kill the now unnecessary librewolf instance.
 pkill -u "$name" librewolf
 
-wantkeyd && enablekeyd
+[ "$wantkeyd" = true ] && enablekeyd
 
 
 #
