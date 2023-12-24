@@ -129,17 +129,20 @@ enablekeyd() {
     ln -sf /home/$name/.config/keyd/default.conf /etc/keyd/default.conf
     case "$(readlink -f /sbin/init)" in
 	*systemd*)
-        systemctl enable keyd
-        ;;
+                systemctl enable keyd ;;
 	*runit*)
-        servicesdir="/etc/runit/sv"
-        keydservice="$servicesdir/keyd"
-        [ -d "$keydservice" ] && return 1
-        mkdir $keydservice
-        echo '#!/bin/sh\nexec keyd' > "$keydservice/run"
-        chmod u+x "$keydservice/run"
-        ln -s /etc/runit/sv/keyd /run/runit/service
-        ;;
+                servicesdir="/etc/runit/sv"
+                keydservice="$servicesdir/keyd"
+                [ -d "$keydservice" ] && return 1
+                mkdir $keydservice
+                echo '#!/bin/sh\nexec keyd' > "$keydservice/run"
+                chmod u+x "$keydservice/run"
+                ln -s /etc/runit/sv/keyd /run/runit/service ;;
+        *dinit*)
+                printf 'type            = process\ncommand         = /usr/bin/keyd' > /etc/dinit.d/keyd
+                dinitctl enable keyd
+                dinitctl start keyd
+                ;;
     *)
         echo "No compatible init system detected. Feel free to make a pull request"
         ;;
