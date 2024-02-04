@@ -359,6 +359,9 @@ sudo -u "$name" mkdir -p "/home/$name/Videos/Screenrecordings"
 sudo -u "$name" mkdir -p "/home/$name/.local/share/gnupg"
 chmod 0600 "/home/$name/.local/share/gnupg" # since we change $GNUPGHOME to this path we need to have this folder created or else we encounter errors when getting packages from aur 
 
+echo "source /home/$name/.config/zsh/.zshrc" > /root/.zshrc
+echo 'PS1="%B%{$fg[red]%}[%{$fg[red]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[yellow]%}%~%{$fg[red]%}]%{$reset_color%}#%b "' >> /root/.zshrc
+
 installdefaultwallpapers
 
 # dbus UUID must be generated for Artix runit.
