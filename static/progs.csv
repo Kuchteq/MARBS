@@ -40,6 +40,7 @@ S,https://github.com/Kuchteq/someblocks.git, "is the statusbar for displaying us
 ,xdg-desktop-portal-wlr, "provides the portals functionality and later on gets replaced by my version that adds functionality"
 S,https://github.com/Kuchteq/xdg-desktop-portal-wlr-plus-filechooser.git, "provides the portals functionality used by browsers for webrtc and file picking."
 ,bemenu-wayland, "runs commands and provides a UI for selection."
+,tofi, "runs commands and provides a UI for selection but is much more customizable."
 ,pinentry-bemenu, "provides autorization dialog"
 ,pass, "is a minimal password manager"
 ,newsboat, "is a terminal RSS client."
