@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Mariusz's Auto Rice Boostrapping Script (MARBS) based off LARBS
-# by Mariusz Kuchta
+# by Mariusz Kuchta, Luke Smith and contributors of the FOSS community
 # License: GNU GPLv3
 
 ### OPTIONS AND VARIABLES ###
@@ -10,7 +10,6 @@ dotfilesrepo="https://github.com/kuchteq/wayrice.git"
 progsfile="https://raw.githubusercontent.com/Kuchteq/MARBS/master/static/progs.csv"
 aurhelper="paru"
 repobranch="master"
-hidpi=false
 wantkeyd=false
 export TERM=ansi
 
@@ -56,14 +55,6 @@ usercheck() {
 		whiptail --title "WARNING" --yes-button "CONTINUE" \
 			--no-button "No wait..." \
 			--yesno "The user \`$name\` already exists on this system. MARBS can install for a user already existing, but it will OVERWRITE any conflicting settings/dotfiles on the user account.\\n\\nMARBS will NOT overwrite your user files, documents, videos, etc., so don't worry about that, but only click <CONTINUE> if you don't mind your settings being overwritten.\\n\\nNote also that MARBS will change $name's password to the one you just gave." 14 70
-}
-
-hidpisetupask() {
-	whiptail --title "Do you want the hidpi setup?" --yes-button "My setup requires hidpi!" \
-		--no-button "Nope, I'm all good" \
-                --defaultno \
-		--yesno "If your monitor resolution is large, for example 2K or 4K you most likely want this." 8 70 && hidpi=true
-
 }
 
 keydsetupask() {
@@ -240,8 +231,6 @@ putgitrepo() {
 		--single-branch --no-tags -q --recursive -b "$branch" \
 		--recurse-submodules "$1" "$dir"
 	sudo -u "$name" cp -rfT "$dir" "$2"
-	# If the hidpi option is selected, use the hidpiconf command to transform some configs
-	[ "$hidpi" = true ] && sudo -u "$name" /home/$name/.local/bin/hidpiconf -m
 }
 
 installffaddons(){
@@ -293,8 +282,6 @@ getuserandpass || error "User exited."
 usercheck || error "User exited."
 
 keydsetupask
-
-hidpisetupask
 
 # Last chance for user to back out before install.
 preinstallmsg || error "User exited."
