@@ -9,6 +9,7 @@
 ,lf, "is an extensive terminal file manager that everyone likes. Now with sixel support!"
 ,chafa, "is a program that allows displaying images inside terminals. Used for lf previews."
 ,poppler, "is a program that allows generating thumbnails of pdfs. Used for lf previews."
+,ffmpegthumbnailer, "is a program that allows generating thumbnails of videos. Used for lf previews."
 ,perl-image-exiftool, "is a program that allows reading exif metadata. Used for lf previews."
 ,kanshi, "provides hotplug functionality for newly connected monitors using user defined profiles."
 ,swaybg, "sets the wallpaper."
