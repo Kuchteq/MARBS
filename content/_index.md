@@ -32,7 +32,7 @@ sh marbs.sh
 
 MARBS will then guide you through installation, which is typically relatively snappy. 
 
-Note that the MARBS scripts will not partition any drives or wipe anything, **but** when it deploys the dotfiles, it will overwrite any preexisting files: e.g. the MARBS bashrc will replace your old bashrc, etc. To avoid even this risk, you can tell MARBS to install for a new username and nothing will be overwritten.
+Note that the MARBS scripts will not partition any drives or wipe anything, **but** when it deploys the dotfiles, it will overwrite any preexisting files: e.g. the MARBS bashrc will replace your old bashrc, etc. To avoid even this risk, you can tell MARBS to install for a new username and nothing will be overwritten. There's also an Artix-based [ISO](/iso) with MARBS preinstalled for you to test.
 
 ## First steps inside the system
 
