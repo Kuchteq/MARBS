@@ -251,7 +251,7 @@ installffaddons(){
 }
 
 installdefaultwallpapers() {
-	wallpaperspath="/home/$name/Pictures/Wallpapers"
+	wallpaperspath="/home/$name/.local/share/wallpapers"
 	sudo -u "$name" mkdir -p "$wallpaperspath"
 	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/wallpaper_dark.jpg" > "$wallpaperspath/wallpaper_dark.jpg"
 	sudo -u "$name" curl -Ls "https://marbs.kuchta.dev/wallpapers/wallpaper_light.jpg" > "$wallpaperspath/wallpaper_light.jpg"
