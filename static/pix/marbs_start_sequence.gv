@@ -1,0 +1,113 @@
+digraph {
+    n1 [label="User log in", style="filled" fillcolor="lightgray" ]
+    n2 [label="~/.zprofile symlink to file\n~/.config/shell/profile", style="filled" fillcolor="lightyellow"]
+    scaling [label="specifies global app scaling", style="filled" fillcolor="lightgray"]
+    miscellaneous [label="specifies miscellaneous app settings", style="filled" fillcolor="lightgray"]
+    n3 [label="bottom line runs startw command", style="filled" fillcolor="lightpink"]
+    n4 [label="Inside ~/.local/bin/startw", style="filled" fillcolor="lightgreen"]
+
+    subgraph {
+        label="Inside someblocks"
+        sbsend [label="send generated statusbar output to dwlb", style="filled" fillcolor="lightgray"]
+        sbother [label="run sb-cpu/memory/volume/recording/battery \nfrom ~/.local/bin/statusbar", style="filled" fillcolor="lightpink"]
+        sblock [label="run sb-lock from\n ~/.local/bin/statusbar/sb-lock", style="filled" fillcolor="lightpink"]
+        sblockinside [label="Inside sb-lock", style="filled" fillcolor="lightgreen"]
+        sblockinfo [label="run swayidle take a look there as it defines the timeout\nafter which your device will sleep it also executes sus.", style="filled" fillcolor="lightpink"]
+        sblock -> sblockinside
+        sblockinside -> sblockinfo
+        sblockinfo -> sus
+        sus [label="run sus from ~/.local/bin/sus - runs the actual swaylock - screenlocker\n and defines its wallpaper. Then the system is put to sleep", style="filled" fillcolor="lightpink"]
+    subgraph {
+        label="Inside themeset"
+        themeset [label="run themeset from \n ~/.local/bin/themeset", style="filled" fillcolor="lightpink"]
+        themesetinside [label="Inside themeset", style="filled" fillcolor="lightgreen"]
+        setwallpaper [label="run swaybg to set the wallpaper", style="filled" fillcolor="lightpink"]
+        setwallpaperpath [label="by default these wallpapers\nare inside ~/Pictures/Wallpapers/", style="filled" fillcolor="lightgray"]
+        currenttheme [label="current theme at:\n$XDG_RUNTIME_DIR/theme", style="filled" fillcolor="lightgray"]
+        themeapps [label="change links to theme files and \nsend commands to appropriate apps", style="filled" fillcolor="lightgray"]
+        themeset -> themesetinside
+        themesetinside -> setwallpaper
+        themesetinside -> currenttheme
+        themesetinside -> themeapps
+        setwallpaper -> setwallpaperpath
+    }
+
+    }
+    subgraph {
+        label="Inside startw"
+
+        dwl [label="run dwl" , style="filled" fillcolor="lightpink"]
+        dwlconf [label="config at: ~/.local/src/dwl " , style="filled" fillcolor="lightyellow"]
+        dwlconfrecomp [label="making changes needs\nrecompiling with makepkg -sif" , style="filled" fillcolor="lightgray"]
+        dwlxkbkeymapath [label="among many others\n defines plde keyboard \nlayout at ~/.config/xkb/symbols/plde", style="filled" fillcolor="lightgray"]
+
+        dwl -> dwlconf
+        dwlconf -> dwlxkbkeymapath
+        dwlconf -> dwlconfrecomp
+        dwlpass [label="pass the information about windows", style="filled" fillcolor="lightgray" ]
+        dwl -> dwlpass
+        dwlpass -> dwlbreceive
+        dwlb [label="run dwlb" , style="filled" fillcolor="lightpink"]
+        dwlbconf [label="config at ~/.local/src/dwlb" , style="filled" fillcolor="lightyellow"]
+        dwlbreceive [label="receives information about window from dwl\nbut right side of the statusbar from someblocks" , style="filled" fillcolor="lightgray"]
+        dwlb -> dwlbconf
+        dwlb -> dwlbreceive
+        kanshi [label="run kanshi", style="filled" fillcolor="lightpink"]
+        kanshiconf [label="config at: ~/.local/config/kanshi/config", style="filled" fillcolor="lightyellow"]
+        kanshi->kanshiconf
+
+
+
+
+        fnott [label="run fnott", style="filled" fillcolor="lightpink"]
+        fnottconf [label="config at: ~/.local/config/fnott/fnott.ini", style="filled" fillcolor="lightyellow"]
+        fnott->fnottconf
+
+        dbus [label="run dbus-update-activation-environment", style="filled" fillcolor="lightpink"]
+        someblocks [label="run someblocks", style="filled" fillcolor="lightpink"]
+        someblocksconf [label="config at ~/.local/src/someblocks/blocks.h\ndefines the blocks to be ran.", style="filled" fillcolor="lightyellow"]
+
+        pipewire [label="run pipewire", style="filled" fillcolor="lightpink"]
+        pipewireconf [label="config at:\n ~/./config/pipewire/pipewire.conf", style="filled" fillcolor="lightyellow"]
+        pipewire -> pipewireconf
+
+        someblocks -> sbsend
+        someblocks -> someblocksconf
+        someblocks -> sbother
+        someblocks -> sblock
+        sbsend -> dwlbreceive
+
+
+    }
+
+    n1 -> n2
+    n2 -> n3
+    n2 -> miscellaneous
+    n2 -> scaling
+    n3 -> n4
+    n4 -> dwl
+    n4 -> dwlb
+    n4 -> pipewire
+    n4 -> themeset
+    n4 -> kanshi
+    n4 -> fnott
+    n4 -> someblocks
+    n4 -> dbus
+
+subgraph {
+
+        nonlinear [label="Non linear execution:"]
+    servicemanager [label=" Once you boot, the system manager also runs:"]
+    keyd [label="keyd daemon - specifying various keyboard mappings\nconfig at: ~/.config/keyd/default.conf this is\nnot the same as keyboard layout"]
+    xdgportal [label="xdg-desktop-portal - though it is not started explicitly\n once an app that uses native file picker such as\n librewolf or chromium asks for selecting a file\nit automatically gets launched. It is also responsible\nfor giving access to screen recording"]
+    xdgportalconf [label="Config at ~/.config/xdg-desktop-portal-wlr/config\nalong it there's the lf-wrapper script there."]
+    xdgportal -> xdgportalfix
+    xdgportal -> xdgportalconf
+    xdgportalfix [label="If you have problems with file picker,\n try recompiling with makepkg -sif"]
+    nonlinear -> servicemanager
+    servicemanager -> keyd
+    nonlinear -> xdgportal
+
+}
+}
+
