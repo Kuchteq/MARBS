@@ -74,9 +74,3 @@ The beginner's guide/video only covers the basis You can figure out about the sy
 - No proprietary software or spyware.
 - No snaps or flatpaks or Mac-lite garbage. GNU/Linux the way it's supposed to be.
 - No branding cringe. Once you run MARBS, you have **your own** system, not mine!
-
-## Extensions!
-Everyone has their own workflow and uses for their computer. MARBS has been written by a software developer and some aspects of the system have been specifically adjusted to that purpose, such as the neovim config. However, the system otherwise tries to be workflow agnostic, installing only the minimal viable set of utilities to be usable for everyday things see the [programs section](#programs) or the [full list of installed software by the MARBS script](/progs.csv).
-
-MARBS extensions are a way to further adjust the installation to fit some particular needs. In their most basic form, they install extra software that you would need to anyway install. Some other ones though configure that software and do more advanced things. Extensions are standalone scripts and can be easily installed using curl (see individual extension page for exact url). Currently, available extensions include:
-- [code developer](/code_dev)
