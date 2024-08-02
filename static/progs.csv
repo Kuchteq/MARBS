@@ -1,5 +1,5 @@
 #TAG,NAME IN REPO (or git url),PURPOSE (should be a verb phrase to sound right while installing)
-,wlroots, "is the wayland compositor library used by dwl."
+A,wlroots-git, "is the wayland compositor library used by dwl."
 ,xorg-xwayland, "is the compatibility layer for xorg so that x based programs work."
 ,polkit, "manages user policies."
 ,ttf-font-awesome, "provides extended glyph support."
