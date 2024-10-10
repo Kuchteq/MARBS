@@ -23,7 +23,7 @@ Instead, you realize how easy it is to set things up automatically yourself.
 
 ## Installation
 
-On a fresh installation of Arch Linux or Artix Linux, run the following:
+On a fresh installation of Arch Linux or Artix Linux, create a [sudo privileged user, log in to it](/user_requirements) and run the following:
 
 ```fish
 curl -LO marbs.kuchta.dev/marbs.sh
