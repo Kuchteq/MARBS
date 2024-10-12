@@ -14,7 +14,7 @@ zsh is the shell used by MARBS.
 
 ## Little features
 
-- Press <kbd>ctrl + o</kbd> to open a special instance of [lf](/lf). It works like normal lf, but if you press <kbd>q</kbd> to quit, zsh will automatically change directory to the directory you ended up in. Useful to quickly navigate directories without typing.
+- Press <kbd>ctrl + o</kbd> to open a special instance of [lf](/lf). It works like normal lf, but if you press <kbd>q</kbd> to quit, zsh will automatically change directory to the directory you ended up in. It will also preserve the command that is currently input. Useful to quickly navigate directories without typing.
 - <kbd>ctrl + f</kbd> -- use `fzf` to search for a file deep in this directory structure. Selecting it will change the directory to where it is.
 - <kbd>ctrl + a</kbd> -- open an instance of `bc` to do some arithmetic if needed. Press <kbd>ctrl + d</kbd> to exit.
 

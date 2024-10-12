@@ -1,24 +1,23 @@
 title: Foot guide for MARBS users
 author: Mariusz Kuchta
 
-## Configuration files
-See ~/.config/foot/foot.ini which is a symlink to either foot_dark.ini or foot_light.ini. These configs should be mirrored whenever you make changes to anything but the color scheme. The actual terminal that is run by default is a wrapper script called footie, that has to do with client-server architecture and the colors are respecified there. If you don't care about a bit more overhead when spawning a new terminal, you can change the TERMINAL variable in ~/.config/shell/profile to foot and the termcmd inside ~/.local/src/dwl/config.h accordingly.
+## Configuration files & help
+See *~/.config/foot/foot.ini* which is a symlink to either *foot\_dark.ini* or *foot_light.ini*. These configs should be mirrored whenever you make changes to anything but the color scheme. See `man 1 foot` for overview of all keybindings, `man 5 foot.ini` for config options, `man 7 foot-ctlseqs` for discovering available **[control sequences](https://gist.github.com/fnky/458719343aabd01cfb17a3a4f7296797)**.Don't manually change opacity of the terminal. Instead use **termopacity** script as those values are defined in more than one place.
 
-## Window management
-- MOD + j – go to next window in the stack
-- MOD + k – go to previous window in the stack
-- MOD + Enter – make the current window the master
-- MOD + Shift + c – close the current window
-- MOD + Number [1–9] – view a given tag
-- MOD + Shift + Number [1–9] – move the current window to a given tag
-- MOD + Tab – toggle between the last two visited windows
-- MOD + t – set the layout mode to tiling
-- MOD + m – set the layout mode to monocle
-- MOD + | – set the layout mode to equal vertical windows
-- MOD + f – make the current window full screen (this is different to setting the layout to monocle)
-- MOD + , – shift focus to the monitor left of focused monitor
-- MOD + . – shift focus to the monitor right of focused monitor (if you have only two monitors, it doesn't really matter as it wraps around)
-- MOD + Shift + , – move the current window to a monitor left of it MOD + Shift + . – move the current window to a monitor right of it
-- MOD + Mouse left hold – freely move the window around. This makes your window no longer tiled but rather floating! To make it tile itself again, press MOD + Shift + Space.
-- MOD + Shift + space – toggle between making a given window floating or non–floating.
-- MOD + Mouse right hold – freely resize the window using mouse. Again this makes your window floating.
+## Keybindings
+| *Key combo* | *functionality* |
+|:-----------|:--------------|
+| | |
+| `MOD + Space` | Spawn another terminal window in the same directory. |
+| `Shift + PgUp/PgDn` | scroll up or down in the terminal history. |
+| `Ctrl + -` | Decrease terminal font size. |
+| `Ctrl + +` | Increase terminal font size. |
+| `Ctrl + Shift + R` | enter search mode. |
+| `Ctrl + k` | (in search mode) go to next result. |
+| `Ctrl + j` | (in search mode) go to previous result. |
+| `Ctrl + w` | (in search mode) extend selection by a word. |
+| `Enter` | (in search mode) copy selected text to foot clipboard. |
+| `Ctrl + Shift + I` | paste text from foot clipboard. |
+| `Ctrl + Shift + U` | detect URL and OSC 8 links in the terminal (handled by bemenuhandler) |
+| `Ctrl + Shift + C` | transfer foot clipboard text to system clipboard. |
+| `Ctrl + Shift + V` | paste from system clipboard.
