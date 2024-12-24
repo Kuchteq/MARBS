@@ -74,3 +74,6 @@ The beginner's guide/video only covers the basis You can figure out about the sy
 - No proprietary software or spyware.
 - No snaps or flatpaks or Mac-lite garbage. GNU/Linux the way it's supposed to be.
 - No branding cringe. Once you run MARBS, you have **your own** system, not mine!
+
+## MARBS is in active development
+View the [release notes](/release-notes) and guides on how to upgrade to newest versions.
