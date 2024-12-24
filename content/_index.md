@@ -53,7 +53,7 @@ Here are the main programs, all with extra information here:
 - [dwlb + someblocks](/statusbar) -- statusbar
 - [zathura](/zathura) -- pdf reader
 - [mpv](/mpv) -- video player
-- [imv](/imv) -- image viewer
+- [swayimg](/swayimg) -- image viewer
 - [neomutt](/neomutt) -- email
 - [ncmpcpp](/ncmpcpp) -- music
 - [newsboat](newsboat) -- RSS feeds and news
